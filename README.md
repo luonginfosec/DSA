@@ -1,5 +1,7 @@
 # 📚 Lộ trình học DSA từ không biết gì
 
+- Bao gồm file code và đề trong từng mục.
+
 ## WEEK 1-2: C++ và cấu trúc dữ liệu cơ bản
 
 ### 💡 Lý thuyết:

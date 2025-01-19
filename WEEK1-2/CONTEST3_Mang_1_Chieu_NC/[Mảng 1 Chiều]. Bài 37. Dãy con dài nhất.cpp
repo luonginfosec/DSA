@@ -2,22 +2,24 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
+
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n, k;
+
+    ll n, k;
     cin >> n >> k;
-    int a[n + 1];
-    for (int i = 1; i <= n; i++)
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++)
     {
         cin >> a[i];
     }
-    map<int, int> mp;
-    mp[0] = 0;
-    int sum = 0;
-    int res = -1;
-    for (int i = 1; i <= n; i++)
+    map<ll, ll> mp;
+    mp[0] = -1;
+    ll sum = 0;
+    ll res = -1;
+    for (ll i = 0; i < n; i++)
     {
         sum = (sum + a[i] % k + k) % k;
         if (mp.count(sum))

@@ -8,12 +8,11 @@ int main()
     cin.tie(nullptr);
     ll n;
     cin >> n;
-    vector<ll> a(n);
+    ll a[n];
     for (auto &x : a)
         cin >> x;
-    sort(a.begin(), a.end());
-    ll minA = 0,
-       minB = 0;
+    sort(a, a + n);
+    ll minA = 0, minB = 0;
     for (int i = 0; i < n; i++)
     {
         if (i % 2 == 0)

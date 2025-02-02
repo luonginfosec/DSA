@@ -1,42 +1,36 @@
+//Thoi gian troi qua khong the quay tro lai. LuongVD <3, AC AC AC PLEASE
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     ll n;
     cin >> n;
-    ll a[n];
-    for (ll i = 0; i < n; i++)
-    {
+    ll a[n+1] = {0};
+    for(ll i = 1; i <= n; i++){
         cin >> a[i];
     }
-    ll maxLen = 0, start = 0, end = 0;
-    for (ll i = 0; i < n; i++)
-    {
-        ll curr_sum = 0;
-        for (ll j = i; j < n; j++)
-        {
-            curr_sum += a[j];
-            if (curr_sum == 0)
-            {
-                if (j - i + 1 > maxLen)
-                {
-                    maxLen = j - i + 1;
-                    start = i;
-                    end = j;
-                }
+    map<ll,ll> mp;
+    ll res = -1e9 , sum = 0;
+    ll valStart = 0;
+    mp[0] = 0;
+    for(ll i = 1; i <= n; i++){
+        sum += a[i];
+        if(mp.count(sum)){
+            if(i - mp[sum] > res){
+                res = i - mp[sum];
+                valStart = mp[sum] + 1;
             }
         }
+        if(mp.count(sum) == 0){
+            mp[sum] = i;
+        }
     }
-    if (maxLen == 0)
-        cout << "NOT FOUND";
-    else
-    {
-        for (ll i = start; i <= end; i++)
-        {
+    if(res == -1e9) cout << "NOT FOUND" << endl;
+    else {
+        for(ll i = valStart; i <= valStart + res - 1; i++){
             cout << a[i] << " ";
         }
     }

@@ -2,33 +2,22 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-ll n, k, a[1000], b[1000], final;
-void ktao()
+set<string> result;
+void sinh(ll pos, string cur, ll n, set<string> &result)
 {
-    final = 0;
-    cin >> n >> k;
-    for (ll i = 1; i <= k; i++)
+    if (pos == n - 1)
     {
-        cin >> a[i];
-        b[i] = a[i];
+        cur += 'A';
+        result.insert(cur);
+        return;
     }
-}
-void sinh()
-{
-    ll i = k;
-    while (i >= 1 && a[i] == n - k + i)
-    {
-        i--;
+    char prev = cur.back();
+    if(prev == 'H'){
+        sinh(pos + 1, cur + 'A', n, result);
     }
-    if (i == 0)
-        final = 1;
-    else
-    {
-        a[i]++;
-        for (ll j = i + 1; j <= n; j++)
-        {
-            a[j] = a[j - 1] + 1;
-        }
+    else{
+        sinh(pos + 1, cur + 'A', n, result);
+        sinh(pos + 1, cur + 'H', n, result);
     }
 }
 int main()
@@ -39,20 +28,18 @@ int main()
     cin >> t;
     while (t--)
     {
-
-        ktao();
-        sinh();
-        if (final == 1)
-            cout << k << endl;
+        result.clear();
+        ll n;
+        cin >> n;
+        if (n < 2)
+            continue;
         else
         {
-            set<ll> se;
-            for (ll i = 1; i <= k; i++)
-            {
-                se.insert(a[i]);
-                se.insert(b[i]);
+            string init = "H";
+            sinh(1,init,n,result);
+            for(auto x : result){
+                cout << x << endl;
             }
-            cout << se.size() - k << endl;
         }
     }
 }

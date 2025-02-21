@@ -12,24 +12,17 @@ int main()
     ll a[n];
     for (auto &x : a)
         cin >> x;
-    ll sum = 0;
+    multiset<ll> se;
     for (ll i = 0; i < k; i++)
     {
-        sum += a[i];
+        se.insert(a[i]);
     }
-    ll idx = 0, res = sum;
+    cout << *se.begin() << " " << *se.rbegin() << endl;
     for (ll i = k; i < n; i++)
     {
-        sum = sum + a[i] - a[i - k];
-        if (sum > res)
-        {
-            res = sum;
-            idx = i - k + 1;
-        }
-    }
-    cout << res << endl;
-    for (ll i = idx; i < idx + k; i++)
-    {
-        cout << a[i] << " ";
+        se.insert(a[i]);
+        auto it = se.find(a[i - k]);
+        se.erase(it);
+        cout << *se.begin() << " " << *se.rbegin() << endl;
     }
 }
